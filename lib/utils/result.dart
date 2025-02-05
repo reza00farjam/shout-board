@@ -19,6 +19,12 @@ sealed class Result<T> {
 
   /// Creates an failed [Result], completed with the specified [error].
   const factory Result.failure(Exception error) = Failure._;
+
+  /// Safely casts the result to [Success] if it is a success, otherwise returns null.
+  Success<T>? get asSuccess => this is Success<T> ? this as Success<T> : null;
+
+  /// Safely casts the result to [Failure] if it is a failure, otherwise returns null.
+  Failure<T>? get asError => this is Failure<T> ? this as Failure<T> : null;
 }
 
 /// Subclass of Result for values

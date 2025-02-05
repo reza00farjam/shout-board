@@ -18,9 +18,7 @@ class MarqueeRepository {
 
     final result = await _localStorageService.fetchMarquee();
 
-    if (result is Success) {
-      _cachedMarquee = (result as Success).value;
-    }
+    if (result is Success) _cachedMarquee = result.asSuccess!.value;
 
     return result;
   }
