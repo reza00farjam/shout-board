@@ -29,24 +29,42 @@ class HomeColorPickerListTile extends StatelessWidget {
       ),
       onTap: () => showDialog(
         context: context,
-        builder: (context) => AlertDialog(
-          scrollable: true,
-          title: title,
-          content: ColorPicker(
-            hexInputBar: true,
-            pickerColor: value,
-            labelTypes: const [],
-            paletteType: PaletteType.hsl,
-            onColorChanged: onChanged,
-            pickerAreaBorderRadius: BorderRadius.circular(4),
-          ),
-          actions: <Widget>[
-            ElevatedButton(
-              onPressed: context.pop,
-              child: const Text('Got it'),
+        builder: (context) {
+          const gapSize = 8.0;
+          const paddingSize = 16.0;
+
+          return AlertDialog(
+            title: title,
+            scrollable: true,
+            contentPadding: const EdgeInsets.symmetric(horizontal: paddingSize),
+            titlePadding: const EdgeInsets.only(
+              top: paddingSize,
+              left: paddingSize,
+              right: paddingSize,
+              bottom: gapSize,
             ),
-          ],
-        ),
+            actionsPadding: const EdgeInsets.only(
+              top: gapSize,
+              left: paddingSize,
+              right: paddingSize,
+              bottom: paddingSize,
+            ),
+            content: ColorPicker(
+              hexInputBar: true,
+              pickerColor: value,
+              onColorChanged: onChanged,
+              paletteType: PaletteType.hsl,
+              pickerAreaHeightPercent: 0.8,
+              pickerAreaBorderRadius: BorderRadius.circular(4),
+            ),
+            actions: [
+              ElevatedButton(
+                onPressed: context.pop,
+                child: const Text('Got it'),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
