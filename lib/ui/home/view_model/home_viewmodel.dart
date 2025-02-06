@@ -50,7 +50,7 @@ class HomeViewModel extends ChangeNotifier {
 
     _updateMarqueeDebounce?.cancel();
     _updateMarqueeDebounce = Timer(
-      const Duration(milliseconds: 500),
+      const Duration(milliseconds: 100),
       () async {
         final result = await _marqueeRepository.saveMarquee(newMarquee);
 
