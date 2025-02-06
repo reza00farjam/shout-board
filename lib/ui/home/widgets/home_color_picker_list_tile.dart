@@ -33,6 +33,8 @@ class HomeColorPickerListTile extends StatelessWidget {
           const gapSize = 8.0;
           const paddingSize = 16.0;
 
+          Color selectedColor = value;
+
           return AlertDialog(
             title: title,
             scrollable: true,
@@ -51,16 +53,19 @@ class HomeColorPickerListTile extends StatelessWidget {
             ),
             content: ColorPicker(
               hexInputBar: true,
-              pickerColor: value,
-              onColorChanged: onChanged,
+              pickerColor: selectedColor,
               paletteType: PaletteType.hsl,
               pickerAreaHeightPercent: 0.8,
+              onColorChanged: (value) => selectedColor = value,
               pickerAreaBorderRadius: BorderRadius.circular(4),
             ),
             actions: [
               ElevatedButton(
-                onPressed: context.pop,
-                child: const Text('Got it'),
+                child: const Text('Set Color'),
+                onPressed: () {
+                  onChanged(selectedColor);
+                  context.pop();
+                },
               ),
             ],
           );
