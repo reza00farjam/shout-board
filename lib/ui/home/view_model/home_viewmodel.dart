@@ -20,7 +20,6 @@ class HomeViewModel extends ChangeNotifier {
 
   final _log = Logger('HomeViewModel');
 
-  Timer? _updateMarqueeDebounce;
   MarqueeModel? _marquee;
 
   MarqueeModel? get marquee => _marquee;
@@ -44,23 +43,20 @@ class HomeViewModel extends ChangeNotifier {
     }
   }
 
-  void updateMarquee(MarqueeModel newMarquee) {
+  // We are not interested in this function's execution state for updating the UI.
+  // Additionally, this might be called while a previous call hasn't ended, so we don't want
+  // to block new calls. Therefore, we don't need to wrap it in a `Command`.
+  Future<void> updateMarquee(MarqueeModel newMarquee) async {
     _marquee = newMarquee;
     notifyListeners();
 
-    _updateMarqueeDebounce?.cancel();
-    _updateMarqueeDebounce = Timer(
-      const Duration(milliseconds: 500),
-      () async {
-        final result = await _marqueeRepository.saveMarquee(newMarquee);
+    final result = await _marqueeRepository.saveMarquee(newMarquee);
 
-        switch (result) {
-          case Success():
-            _log.fine('Saved marquee');
-          case Failure():
-            _log.warning('Failed to save marquee', result.error);
-        }
-      },
-    );
+    switch (result) {
+      case Success():
+        _log.fine('Saved marquee');
+      case Failure():
+        _log.warning('Failed to save marquee', result.error);
+    }
   }
 }
