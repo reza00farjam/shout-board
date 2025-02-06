@@ -57,7 +57,11 @@ class _MarqueeScreenState extends State<MarqueeScreen> {
       listenable: widget.viewModel.loadMarquee,
       builder: (_, __) {
         if (widget.viewModel.loadMarquee.running) {
-          return const Center(child: CircularProgressIndicator());
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
 
         return Scaffold(

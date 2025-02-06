@@ -20,7 +20,11 @@ class HomeScreen extends StatelessWidget {
       listenable: viewModel.loadMarquee,
       builder: (_, __) {
         if (viewModel.loadMarquee.running) {
-          return const Center(child: CircularProgressIndicator());
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
 
         final marquee = ListenableBuilder(
