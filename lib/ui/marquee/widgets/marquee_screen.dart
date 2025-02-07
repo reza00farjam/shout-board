@@ -54,9 +54,9 @@ class _MarqueeScreenState extends State<MarqueeScreen> {
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
-      listenable: widget.viewModel.loadMarquee,
+      listenable: widget.viewModel.loadMarqueeConfig,
       builder: (_, __) {
-        if (widget.viewModel.loadMarquee.running) {
+        if (widget.viewModel.loadMarqueeConfig.running) {
           return const Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
@@ -73,9 +73,7 @@ class _MarqueeScreenState extends State<MarqueeScreen> {
               icon: const Icon(Icons.pause_rounded),
             ),
           ),
-          body: MarqueeText(
-            marquee: widget.viewModel.marquee!,
-          ),
+          body: MarqueeText(marqueeConfig: widget.viewModel.marqueeConfig!),
         );
       },
     );

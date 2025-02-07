@@ -2,40 +2,40 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
-import '../../../data/repositories/marquee_repository.dart';
-import '../../../domain/models/marquee/marquee_model.dart';
+import '../../../data/repositories/marquee_config_repository.dart';
+import '../../../domain/models/marquee/marquee_config_model.dart';
 import '../../../utils/command.dart';
 import '../../../utils/result.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  final MarqueeRepository _marqueeRepository;
+  final MarqueeConfigRepository _marqueeConfigRepository;
 
   HomeViewModel({
-    required MarqueeRepository marqueeRepository,
-  }) : _marqueeRepository = marqueeRepository {
-    loadMarquee = Command0(_loadMarquee)..execute();
+    required MarqueeConfigRepository marqueeConfigRepository,
+  }) : _marqueeConfigRepository = marqueeConfigRepository {
+    loadMarqueeConfig = Command0(_loadMarqueeConfig)..execute();
   }
 
-  late Command0 loadMarquee;
+  late Command0 loadMarqueeConfig;
 
   final _log = Logger('HomeViewModel');
 
-  Timer? _updateMarqueeDebounce;
-  MarqueeModel? _marquee;
+  Timer? _updateMarqueeConfigDebounce;
+  MarqueeConfigModel? _marqueeConfig;
 
-  MarqueeModel? get marquee => _marquee;
+  MarqueeConfigModel? get marqueeConfig => _marqueeConfig;
 
-  Future<Result> _loadMarquee() async {
+  Future<Result> _loadMarqueeConfig() async {
     try {
-      final result = await _marqueeRepository.fetchMarquee();
+      final result = await _marqueeConfigRepository.fetchMarqueeConfig();
 
       switch (result) {
         case Success():
-          _marquee = result.value;
-          _log.fine('Loaded marquee');
+          _marqueeConfig = result.value;
+          _log.fine('Loaded marquee config');
         case Failure():
-          _marquee = MarqueeModel.defaultInstance;
-          _log.warning('Failed to load marquee', result.error);
+          _marqueeConfig = MarqueeConfigModel.defaultInstance;
+          _log.warning('Failed to load marquee config', result.error);
       }
 
       return result;
@@ -44,21 +44,22 @@ class HomeViewModel extends ChangeNotifier {
     }
   }
 
-  void updateMarquee(MarqueeModel newMarquee) {
-    _marquee = newMarquee;
+  void updateMarqueeConfig(MarqueeConfigModel newMarqueeConfig) {
+    _marqueeConfig = newMarqueeConfig;
     notifyListeners();
 
-    _updateMarqueeDebounce?.cancel();
-    _updateMarqueeDebounce = Timer(
+    _updateMarqueeConfigDebounce?.cancel();
+    _updateMarqueeConfigDebounce = Timer(
       const Duration(milliseconds: 100),
       () async {
-        final result = await _marqueeRepository.saveMarquee(newMarquee);
+        final result =
+            await _marqueeConfigRepository.saveMarqueeConfig(newMarqueeConfig);
 
         switch (result) {
           case Success():
-            _log.fine('Saved marquee');
+            _log.fine('Saved marquee config');
           case Failure():
-            _log.warning('Failed to save marquee', result.error);
+            _log.warning('Failed to save marquee config', result.error);
         }
       },
     );

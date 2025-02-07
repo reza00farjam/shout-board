@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'marquee_model.dart';
+part of 'marquee_config_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,66 +15,66 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$MarqueeModel {
+mixin _$MarqueeConfigModel {
   bool get blink => throw _privateConstructorUsedError;
   bool get mirror => throw _privateConstructorUsedError;
-  String get text => throw _privateConstructorUsedError;
-  double get textSize => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
+  double get size => throw _privateConstructorUsedError;
   double get velocity => throw _privateConstructorUsedError;
-  Color get textColor => throw _privateConstructorUsedError;
+  Color get messageColor => throw _privateConstructorUsedError;
   Color get backgroundColor => throw _privateConstructorUsedError;
   Axis get scrollDirection => throw _privateConstructorUsedError;
-  TextDirection get textDirection => throw _privateConstructorUsedError;
+  TextDirection get messageDirection => throw _privateConstructorUsedError;
 
-  /// Create a copy of MarqueeModel
+  /// Create a copy of MarqueeConfigModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $MarqueeModelCopyWith<MarqueeModel> get copyWith =>
+  $MarqueeConfigModelCopyWith<MarqueeConfigModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MarqueeModelCopyWith<$Res> {
-  factory $MarqueeModelCopyWith(
-          MarqueeModel value, $Res Function(MarqueeModel) then) =
-      _$MarqueeModelCopyWithImpl<$Res, MarqueeModel>;
+abstract class $MarqueeConfigModelCopyWith<$Res> {
+  factory $MarqueeConfigModelCopyWith(
+          MarqueeConfigModel value, $Res Function(MarqueeConfigModel) then) =
+      _$MarqueeConfigModelCopyWithImpl<$Res, MarqueeConfigModel>;
   @useResult
   $Res call(
       {bool blink,
       bool mirror,
-      String text,
-      double textSize,
+      String message,
+      double size,
       double velocity,
-      Color textColor,
+      Color messageColor,
       Color backgroundColor,
       Axis scrollDirection,
-      TextDirection textDirection});
+      TextDirection messageDirection});
 }
 
 /// @nodoc
-class _$MarqueeModelCopyWithImpl<$Res, $Val extends MarqueeModel>
-    implements $MarqueeModelCopyWith<$Res> {
-  _$MarqueeModelCopyWithImpl(this._value, this._then);
+class _$MarqueeConfigModelCopyWithImpl<$Res, $Val extends MarqueeConfigModel>
+    implements $MarqueeConfigModelCopyWith<$Res> {
+  _$MarqueeConfigModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of MarqueeModel
+  /// Create a copy of MarqueeConfigModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? blink = null,
     Object? mirror = null,
-    Object? text = null,
-    Object? textSize = null,
+    Object? message = null,
+    Object? size = null,
     Object? velocity = null,
-    Object? textColor = null,
+    Object? messageColor = null,
     Object? backgroundColor = null,
     Object? scrollDirection = null,
-    Object? textDirection = null,
+    Object? messageDirection = null,
   }) {
     return _then(_value.copyWith(
       blink: null == blink
@@ -85,21 +85,21 @@ class _$MarqueeModelCopyWithImpl<$Res, $Val extends MarqueeModel>
           ? _value.mirror
           : mirror // ignore: cast_nullable_to_non_nullable
               as bool,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String,
-      textSize: null == textSize
-          ? _value.textSize
-          : textSize // ignore: cast_nullable_to_non_nullable
+      size: null == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
               as double,
       velocity: null == velocity
           ? _value.velocity
           : velocity // ignore: cast_nullable_to_non_nullable
               as double,
-      textColor: null == textColor
-          ? _value.textColor
-          : textColor // ignore: cast_nullable_to_non_nullable
+      messageColor: null == messageColor
+          ? _value.messageColor
+          : messageColor // ignore: cast_nullable_to_non_nullable
               as Color,
       backgroundColor: null == backgroundColor
           ? _value.backgroundColor
@@ -109,58 +109,58 @@ class _$MarqueeModelCopyWithImpl<$Res, $Val extends MarqueeModel>
           ? _value.scrollDirection
           : scrollDirection // ignore: cast_nullable_to_non_nullable
               as Axis,
-      textDirection: null == textDirection
-          ? _value.textDirection
-          : textDirection // ignore: cast_nullable_to_non_nullable
+      messageDirection: null == messageDirection
+          ? _value.messageDirection
+          : messageDirection // ignore: cast_nullable_to_non_nullable
               as TextDirection,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$MarqueeModelImplCopyWith<$Res>
-    implements $MarqueeModelCopyWith<$Res> {
-  factory _$$MarqueeModelImplCopyWith(
-          _$MarqueeModelImpl value, $Res Function(_$MarqueeModelImpl) then) =
-      __$$MarqueeModelImplCopyWithImpl<$Res>;
+abstract class _$$MarqueeConfigModelImplCopyWith<$Res>
+    implements $MarqueeConfigModelCopyWith<$Res> {
+  factory _$$MarqueeConfigModelImplCopyWith(_$MarqueeConfigModelImpl value,
+          $Res Function(_$MarqueeConfigModelImpl) then) =
+      __$$MarqueeConfigModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {bool blink,
       bool mirror,
-      String text,
-      double textSize,
+      String message,
+      double size,
       double velocity,
-      Color textColor,
+      Color messageColor,
       Color backgroundColor,
       Axis scrollDirection,
-      TextDirection textDirection});
+      TextDirection messageDirection});
 }
 
 /// @nodoc
-class __$$MarqueeModelImplCopyWithImpl<$Res>
-    extends _$MarqueeModelCopyWithImpl<$Res, _$MarqueeModelImpl>
-    implements _$$MarqueeModelImplCopyWith<$Res> {
-  __$$MarqueeModelImplCopyWithImpl(
-      _$MarqueeModelImpl _value, $Res Function(_$MarqueeModelImpl) _then)
+class __$$MarqueeConfigModelImplCopyWithImpl<$Res>
+    extends _$MarqueeConfigModelCopyWithImpl<$Res, _$MarqueeConfigModelImpl>
+    implements _$$MarqueeConfigModelImplCopyWith<$Res> {
+  __$$MarqueeConfigModelImplCopyWithImpl(_$MarqueeConfigModelImpl _value,
+      $Res Function(_$MarqueeConfigModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of MarqueeModel
+  /// Create a copy of MarqueeConfigModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? blink = null,
     Object? mirror = null,
-    Object? text = null,
-    Object? textSize = null,
+    Object? message = null,
+    Object? size = null,
     Object? velocity = null,
-    Object? textColor = null,
+    Object? messageColor = null,
     Object? backgroundColor = null,
     Object? scrollDirection = null,
-    Object? textDirection = null,
+    Object? messageDirection = null,
   }) {
-    return _then(_$MarqueeModelImpl(
+    return _then(_$MarqueeConfigModelImpl(
       blink: null == blink
           ? _value.blink
           : blink // ignore: cast_nullable_to_non_nullable
@@ -169,21 +169,21 @@ class __$$MarqueeModelImplCopyWithImpl<$Res>
           ? _value.mirror
           : mirror // ignore: cast_nullable_to_non_nullable
               as bool,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String,
-      textSize: null == textSize
-          ? _value.textSize
-          : textSize // ignore: cast_nullable_to_non_nullable
+      size: null == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
               as double,
       velocity: null == velocity
           ? _value.velocity
           : velocity // ignore: cast_nullable_to_non_nullable
               as double,
-      textColor: null == textColor
-          ? _value.textColor
-          : textColor // ignore: cast_nullable_to_non_nullable
+      messageColor: null == messageColor
+          ? _value.messageColor
+          : messageColor // ignore: cast_nullable_to_non_nullable
               as Color,
       backgroundColor: null == backgroundColor
           ? _value.backgroundColor
@@ -193,9 +193,9 @@ class __$$MarqueeModelImplCopyWithImpl<$Res>
           ? _value.scrollDirection
           : scrollDirection // ignore: cast_nullable_to_non_nullable
               as Axis,
-      textDirection: null == textDirection
-          ? _value.textDirection
-          : textDirection // ignore: cast_nullable_to_non_nullable
+      messageDirection: null == messageDirection
+          ? _value.messageDirection
+          : messageDirection // ignore: cast_nullable_to_non_nullable
               as TextDirection,
     ));
   }
@@ -203,24 +203,26 @@ class __$$MarqueeModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MarqueeModelImpl with DiagnosticableTreeMixin implements _MarqueeModel {
-  const _$MarqueeModelImpl(
+class _$MarqueeConfigModelImpl
+    with DiagnosticableTreeMixin
+    implements _MarqueeConfigModel {
+  const _$MarqueeConfigModelImpl(
       {required this.blink,
       required this.mirror,
-      required this.text,
-      required this.textSize,
+      required this.message,
+      required this.size,
       required this.velocity,
-      required this.textColor,
+      required this.messageColor,
       required this.backgroundColor,
       required this.scrollDirection,
-      required this.textDirection})
+      required this.messageDirection})
       : assert(
-            textSize >= MarqueeModel.textSizeMinValue &&
-                textSize <= MarqueeModel.textSizeMaxValue,
-            'textSize must be in range [0.1, 1.0]'),
+            size >= MarqueeConfigModel.sizeMinValue &&
+                size <= MarqueeConfigModel.sizeMaxValue,
+            'size must be in range [0.1, 1.0]'),
         assert(
-            velocity >= MarqueeModel.velocityMinValue &&
-                velocity <= MarqueeModel.velocityMaxValue,
+            velocity >= MarqueeConfigModel.velocityMinValue &&
+                velocity <= MarqueeConfigModel.velocityMaxValue,
             'velocity must be in range [0.01, 1.0]');
 
   @override
@@ -228,111 +230,121 @@ class _$MarqueeModelImpl with DiagnosticableTreeMixin implements _MarqueeModel {
   @override
   final bool mirror;
   @override
-  final String text;
+  final String message;
   @override
-  final double textSize;
+  final double size;
   @override
   final double velocity;
   @override
-  final Color textColor;
+  final Color messageColor;
   @override
   final Color backgroundColor;
   @override
   final Axis scrollDirection;
   @override
-  final TextDirection textDirection;
+  final TextDirection messageDirection;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MarqueeModel(blink: $blink, mirror: $mirror, text: $text, textSize: $textSize, velocity: $velocity, textColor: $textColor, backgroundColor: $backgroundColor, scrollDirection: $scrollDirection, textDirection: $textDirection)';
+    return 'MarqueeConfigModel(blink: $blink, mirror: $mirror, message: $message, size: $size, velocity: $velocity, messageColor: $messageColor, backgroundColor: $backgroundColor, scrollDirection: $scrollDirection, messageDirection: $messageDirection)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'MarqueeModel'))
+      ..add(DiagnosticsProperty('type', 'MarqueeConfigModel'))
       ..add(DiagnosticsProperty('blink', blink))
       ..add(DiagnosticsProperty('mirror', mirror))
-      ..add(DiagnosticsProperty('text', text))
-      ..add(DiagnosticsProperty('textSize', textSize))
+      ..add(DiagnosticsProperty('message', message))
+      ..add(DiagnosticsProperty('size', size))
       ..add(DiagnosticsProperty('velocity', velocity))
-      ..add(DiagnosticsProperty('textColor', textColor))
+      ..add(DiagnosticsProperty('messageColor', messageColor))
       ..add(DiagnosticsProperty('backgroundColor', backgroundColor))
       ..add(DiagnosticsProperty('scrollDirection', scrollDirection))
-      ..add(DiagnosticsProperty('textDirection', textDirection));
+      ..add(DiagnosticsProperty('messageDirection', messageDirection));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MarqueeModelImpl &&
+            other is _$MarqueeConfigModelImpl &&
             (identical(other.blink, blink) || other.blink == blink) &&
             (identical(other.mirror, mirror) || other.mirror == mirror) &&
-            (identical(other.text, text) || other.text == text) &&
-            (identical(other.textSize, textSize) ||
-                other.textSize == textSize) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.size, size) || other.size == size) &&
             (identical(other.velocity, velocity) ||
                 other.velocity == velocity) &&
-            (identical(other.textColor, textColor) ||
-                other.textColor == textColor) &&
+            (identical(other.messageColor, messageColor) ||
+                other.messageColor == messageColor) &&
             (identical(other.backgroundColor, backgroundColor) ||
                 other.backgroundColor == backgroundColor) &&
             (identical(other.scrollDirection, scrollDirection) ||
                 other.scrollDirection == scrollDirection) &&
-            (identical(other.textDirection, textDirection) ||
-                other.textDirection == textDirection));
+            (identical(other.messageDirection, messageDirection) ||
+                other.messageDirection == messageDirection));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, blink, mirror, text, textSize,
-      velocity, textColor, backgroundColor, scrollDirection, textDirection);
+  int get hashCode => Object.hash(
+      runtimeType,
+      blink,
+      mirror,
+      message,
+      size,
+      velocity,
+      messageColor,
+      backgroundColor,
+      scrollDirection,
+      messageDirection);
 
-  /// Create a copy of MarqueeModel
+  /// Create a copy of MarqueeConfigModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$MarqueeModelImplCopyWith<_$MarqueeModelImpl> get copyWith =>
-      __$$MarqueeModelImplCopyWithImpl<_$MarqueeModelImpl>(this, _$identity);
+  _$$MarqueeConfigModelImplCopyWith<_$MarqueeConfigModelImpl> get copyWith =>
+      __$$MarqueeConfigModelImplCopyWithImpl<_$MarqueeConfigModelImpl>(
+          this, _$identity);
 }
 
-abstract class _MarqueeModel implements MarqueeModel {
-  const factory _MarqueeModel(
-      {required final bool blink,
-      required final bool mirror,
-      required final String text,
-      required final double textSize,
-      required final double velocity,
-      required final Color textColor,
-      required final Color backgroundColor,
-      required final Axis scrollDirection,
-      required final TextDirection textDirection}) = _$MarqueeModelImpl;
+abstract class _MarqueeConfigModel implements MarqueeConfigModel {
+  const factory _MarqueeConfigModel(
+          {required final bool blink,
+          required final bool mirror,
+          required final String message,
+          required final double size,
+          required final double velocity,
+          required final Color messageColor,
+          required final Color backgroundColor,
+          required final Axis scrollDirection,
+          required final TextDirection messageDirection}) =
+      _$MarqueeConfigModelImpl;
 
   @override
   bool get blink;
   @override
   bool get mirror;
   @override
-  String get text;
+  String get message;
   @override
-  double get textSize;
+  double get size;
   @override
   double get velocity;
   @override
-  Color get textColor;
+  Color get messageColor;
   @override
   Color get backgroundColor;
   @override
   Axis get scrollDirection;
   @override
-  TextDirection get textDirection;
+  TextDirection get messageDirection;
 
-  /// Create a copy of MarqueeModel
+  /// Create a copy of MarqueeConfigModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MarqueeModelImplCopyWith<_$MarqueeModelImpl> get copyWith =>
+  _$$MarqueeConfigModelImplCopyWith<_$MarqueeConfigModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

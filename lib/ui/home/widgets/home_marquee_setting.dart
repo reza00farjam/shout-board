@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/models/marquee/marquee_model.dart';
+import '../../../domain/models/marquee/marquee_config_model.dart';
 import '../view_model/home_viewmodel.dart';
 import 'home_color_picker_list_tile.dart';
 
@@ -17,8 +17,8 @@ class HomeMarqueeSetting extends StatefulWidget {
 }
 
 class _HomeMarqueeSettingState extends State<HomeMarqueeSetting> {
-  late final _textController =
-      TextEditingController(text: widget.viewModel.marquee!.text);
+  late final _messageController =
+      TextEditingController(text: widget.viewModel.marqueeConfig!.message);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _HomeMarqueeSettingState extends State<HomeMarqueeSetting> {
           return ListenableBuilder(
             listenable: widget.viewModel,
             builder: (context, _) {
-              final marquee = widget.viewModel.marquee!;
+              final marqueeConfig = widget.viewModel.marqueeConfig!;
 
               return Column(
                 mainAxisSize: MainAxisSize.min,
@@ -45,11 +45,12 @@ class _HomeMarqueeSettingState extends State<HomeMarqueeSetting> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: TextField(
-                      controller: _textController,
-                      decoration: const InputDecoration(label: Text('Text')),
+                      controller: _messageController,
+                      decoration: const InputDecoration(label: Text('Message')),
                       onTapOutside: (_) => FocusScope.of(context).unfocus(),
-                      onChanged: (text) => widget.viewModel.updateMarquee(
-                        marquee.copyWith(text: text),
+                      onChanged: (message) =>
+                          widget.viewModel.updateMarqueeConfig(
+                        marqueeConfig.copyWith(message: message),
                       ),
                     ),
                   ),
@@ -59,11 +60,12 @@ class _HomeMarqueeSettingState extends State<HomeMarqueeSetting> {
                     trailing: SizedBox(
                       width: sliderWidth,
                       child: Slider(
-                        value: marquee.textSize,
-                        min: MarqueeModel.textSizeMinValue,
-                        max: MarqueeModel.textSizeMaxValue,
-                        onChanged: (size) => widget.viewModel.updateMarquee(
-                          marquee.copyWith(textSize: size),
+                        value: marqueeConfig.size,
+                        min: MarqueeConfigModel.sizeMinValue,
+                        max: MarqueeConfigModel.sizeMaxValue,
+                        onChanged: (size) =>
+                            widget.viewModel.updateMarqueeConfig(
+                          marqueeConfig.copyWith(size: size),
                         ),
                       ),
                     ),
@@ -73,61 +75,64 @@ class _HomeMarqueeSettingState extends State<HomeMarqueeSetting> {
                     trailing: SizedBox(
                       width: sliderWidth,
                       child: Slider(
-                        value: marquee.velocity,
-                        min: MarqueeModel.velocityMinValue,
-                        max: MarqueeModel.velocityMaxValue,
-                        onChanged: (velocity) => widget.viewModel.updateMarquee(
-                          marquee.copyWith(velocity: velocity),
+                        value: marqueeConfig.velocity,
+                        min: MarqueeConfigModel.velocityMinValue,
+                        max: MarqueeConfigModel.velocityMaxValue,
+                        onChanged: (velocity) =>
+                            widget.viewModel.updateMarqueeConfig(
+                          marqueeConfig.copyWith(velocity: velocity),
                         ),
                       ),
                     ),
                   ),
                   SwitchListTile(
                     title: const Text('Left to Right'),
-                    value: marquee.textDirection == TextDirection.ltr,
-                    onChanged: (leftToRight) => widget.viewModel.updateMarquee(
-                      marquee.copyWith(
-                        textDirection:
+                    value: marqueeConfig.messageDirection == TextDirection.ltr,
+                    onChanged: (leftToRight) =>
+                        widget.viewModel.updateMarqueeConfig(
+                      marqueeConfig.copyWith(
+                        messageDirection:
                             leftToRight ? TextDirection.ltr : TextDirection.rtl,
                       ),
                     ),
                   ),
                   SwitchListTile(
                     title: const Text('Horizontal'),
-                    value: marquee.scrollDirection == Axis.horizontal,
-                    onChanged: (isHorizontal) => widget.viewModel.updateMarquee(
-                      marquee.copyWith(
+                    value: marqueeConfig.scrollDirection == Axis.horizontal,
+                    onChanged: (isHorizontal) =>
+                        widget.viewModel.updateMarqueeConfig(
+                      marqueeConfig.copyWith(
                         scrollDirection:
                             isHorizontal ? Axis.horizontal : Axis.vertical,
                       ),
                     ),
                   ),
                   SwitchListTile(
-                    value: marquee.blink,
+                    value: marqueeConfig.blink,
                     title: const Text('Blink'),
-                    onChanged: (blink) => widget.viewModel.updateMarquee(
-                      marquee.copyWith(blink: blink),
+                    onChanged: (blink) => widget.viewModel.updateMarqueeConfig(
+                      marqueeConfig.copyWith(blink: blink),
                     ),
                   ),
                   SwitchListTile(
-                    value: marquee.mirror,
+                    value: marqueeConfig.mirror,
                     title: const Text('Mirror'),
-                    onChanged: (mirror) => widget.viewModel.updateMarquee(
-                      marquee.copyWith(mirror: mirror),
+                    onChanged: (mirror) => widget.viewModel.updateMarqueeConfig(
+                      marqueeConfig.copyWith(mirror: mirror),
                     ),
                   ),
                   HomeColorPickerListTile(
-                    value: marquee.textColor,
-                    title: const Text('Text Color'),
-                    onChanged: (color) => widget.viewModel.updateMarquee(
-                      marquee.copyWith(textColor: color),
+                    value: marqueeConfig.messageColor,
+                    title: const Text('Message Color'),
+                    onChanged: (color) => widget.viewModel.updateMarqueeConfig(
+                      marqueeConfig.copyWith(messageColor: color),
                     ),
                   ),
                   HomeColorPickerListTile(
-                    value: marquee.backgroundColor,
+                    value: marqueeConfig.backgroundColor,
                     title: const Text('Background Color'),
-                    onChanged: (color) => widget.viewModel.updateMarquee(
-                      marquee.copyWith(backgroundColor: color),
+                    onChanged: (color) => widget.viewModel.updateMarqueeConfig(
+                      marqueeConfig.copyWith(backgroundColor: color),
                     ),
                   ),
                 ],

@@ -17,9 +17,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
-      listenable: viewModel.loadMarquee,
+      listenable: viewModel.loadMarqueeConfig,
       builder: (_, __) {
-        if (viewModel.loadMarquee.running) {
+        if (viewModel.loadMarqueeConfig.running) {
           return const Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
@@ -29,7 +29,8 @@ class HomeScreen extends StatelessWidget {
 
         final marquee = ListenableBuilder(
           listenable: viewModel,
-          builder: (_, __) => MarqueeText(marquee: viewModel.marquee!),
+          builder: (_, __) =>
+              MarqueeText(marqueeConfig: viewModel.marqueeConfig!),
         );
 
         final setting = HomeMarqueeSetting(viewModel: viewModel);

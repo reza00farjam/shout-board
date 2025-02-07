@@ -20,13 +20,14 @@ GoRouter router() {
       GoRoute(
         path: Routes.home,
         builder: (context, __) => HomeScreen(
-          viewModel: HomeViewModel(marqueeRepository: context.read()),
+          viewModel: HomeViewModel(marqueeConfigRepository: context.read()),
         ),
         routes: [
           GoRoute(
             path: Routes.marquee,
             builder: (context, _) => MarqueeScreen(
-              viewModel: MarqueeViewModel(marqueeRepository: context.read()),
+              viewModel:
+                  MarqueeViewModel(marqueeConfigRepository: context.read()),
             ),
           ),
           GoRoute(
