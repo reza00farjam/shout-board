@@ -7,8 +7,10 @@ import '../data/services/local_storage_service.dart';
 List<SingleChildWidget> get providers {
   return [
     // Services
-    Provider(
-      create: (_) => LocalStorageService(),
+    FutureProvider(
+      lazy: false,
+      initialData: null,
+      create: (_) => LocalStorageService().init(),
     ),
 
     // Repositories

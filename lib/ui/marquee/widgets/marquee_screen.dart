@@ -53,29 +53,16 @@ class _MarqueeScreenState extends State<MarqueeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: widget.viewModel.loadMarqueeConfig,
-      builder: (_, __) {
-        if (widget.viewModel.loadMarqueeConfig.running) {
-          return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-
-        return Scaffold(
-          floatingActionButton: Opacity(
-            opacity: 0.3,
-            child: FloatingActionButton.extended(
-              onPressed: context.pop,
-              label: const Text('Pause'),
-              icon: const Icon(Icons.pause_rounded),
-            ),
-          ),
-          body: MarqueeText(marqueeConfig: widget.viewModel.marqueeConfig!),
-        );
-      },
+    return Scaffold(
+      floatingActionButton: Opacity(
+        opacity: 0.3,
+        child: FloatingActionButton.extended(
+          onPressed: context.pop,
+          label: const Text('Pause'),
+          icon: const Icon(Icons.pause_rounded),
+        ),
+      ),
+      body: MarqueeText(marqueeConfig: widget.viewModel.marqueeConfig),
     );
   }
 }

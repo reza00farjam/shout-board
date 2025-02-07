@@ -18,7 +18,7 @@ class HomeMarqueeSetting extends StatefulWidget {
 
 class _HomeMarqueeSettingState extends State<HomeMarqueeSetting> {
   late final _messageController =
-      TextEditingController(text: widget.viewModel.marqueeConfig!.message);
+      TextEditingController(text: widget.viewModel.marqueeConfig.message);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _HomeMarqueeSettingState extends State<HomeMarqueeSetting> {
           return ListenableBuilder(
             listenable: widget.viewModel,
             builder: (context, _) {
-              final marqueeConfig = widget.viewModel.marqueeConfig!;
+              final marqueeConfig = widget.viewModel.marqueeConfig;
 
               return Column(
                 mainAxisSize: MainAxisSize.min,

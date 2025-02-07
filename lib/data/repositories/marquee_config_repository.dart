@@ -11,12 +11,12 @@ class MarqueeConfigRepository {
 
   MarqueeConfigModel? _cachedMarqueeConfig;
 
-  Future<Result<MarqueeConfigModel>> fetchMarqueeConfig() async {
+  Result<MarqueeConfigModel> fetchMarqueeConfig() {
     if (_cachedMarqueeConfig != null) {
-      return Future.value(Result.success(_cachedMarqueeConfig!));
+      return Result.success(_cachedMarqueeConfig!);
     }
 
-    final result = await _localStorageService.fetchMarqueeConfig();
+    final result = _localStorageService.fetchMarqueeConfig();
 
     if (result is Success) _cachedMarqueeConfig = result.asSuccess!.value;
 

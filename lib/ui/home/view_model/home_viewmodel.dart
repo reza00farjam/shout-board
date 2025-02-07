@@ -4,7 +4,6 @@ import 'package:logging/logging.dart';
 
 import '../../../data/repositories/marquee_config_repository.dart';
 import '../../../domain/models/marquee/marquee_config_model.dart';
-import '../../../utils/command.dart';
 import '../../../utils/result.dart';
 
 class HomeViewModel extends ChangeNotifier {
@@ -13,21 +12,19 @@ class HomeViewModel extends ChangeNotifier {
   HomeViewModel({
     required MarqueeConfigRepository marqueeConfigRepository,
   }) : _marqueeConfigRepository = marqueeConfigRepository {
-    loadMarqueeConfig = Command0(_loadMarqueeConfig)..execute();
+    loadMarqueeConfig();
   }
-
-  late Command0 loadMarqueeConfig;
 
   final _log = Logger('HomeViewModel');
 
   Timer? _updateMarqueeConfigDebounce;
-  MarqueeConfigModel? _marqueeConfig;
 
-  MarqueeConfigModel? get marqueeConfig => _marqueeConfig;
+  late MarqueeConfigModel _marqueeConfig;
+  MarqueeConfigModel get marqueeConfig => _marqueeConfig;
 
-  Future<Result> _loadMarqueeConfig() async {
+  Result loadMarqueeConfig() {
     try {
-      final result = await _marqueeConfigRepository.fetchMarqueeConfig();
+      final result = _marqueeConfigRepository.fetchMarqueeConfig();
 
       switch (result) {
         case Success():

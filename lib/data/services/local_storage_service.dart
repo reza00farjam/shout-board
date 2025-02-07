@@ -16,23 +16,28 @@ class LocalStorageService {
   static const _scrollDirectionKey = 'SCROLL_DIRECTION';
   static const _messageDirectionKey = 'MESSAGE_DIRECTION';
 
+  late final SharedPreferences _sharedPrefs;
+
   final _log = Logger('LocalStorageService');
 
-  Future<Result<MarqueeConfigModel>> fetchMarqueeConfig() async {
-    try {
-      final sharedPreferences = await SharedPreferences.getInstance();
+  Future<LocalStorageService> init() async {
+    _sharedPrefs = await SharedPreferences.getInstance();
+    _log.finest('Initialized local storage service');
 
-      final blink = sharedPreferences.getBool(_blinkKey);
-      final mirror = sharedPreferences.getBool(_mirrorKey);
-      final message = sharedPreferences.getString(_messageKey);
-      final size = sharedPreferences.getDouble(_sizeKey);
-      final velocity = sharedPreferences.getDouble(_velocityKey);
-      final textColorValue = sharedPreferences.getInt(_messageColorKey);
-      final backgroundColorValue =
-          sharedPreferences.getInt(_backgroundColorKey);
-      final scrollDirectionIndex =
-          sharedPreferences.getInt(_scrollDirectionKey);
-      final textDirectionIndex = sharedPreferences.getInt(_messageDirectionKey);
+    return this;
+  }
+
+  Result<MarqueeConfigModel> fetchMarqueeConfig() {
+    try {
+      final blink = _sharedPrefs.getBool(_blinkKey);
+      final mirror = _sharedPrefs.getBool(_mirrorKey);
+      final message = _sharedPrefs.getString(_messageKey);
+      final size = _sharedPrefs.getDouble(_sizeKey);
+      final velocity = _sharedPrefs.getDouble(_velocityKey);
+      final textColorValue = _sharedPrefs.getInt(_messageColorKey);
+      final backgroundColorValue = _sharedPrefs.getInt(_backgroundColorKey);
+      final scrollDirectionIndex = _sharedPrefs.getInt(_scrollDirectionKey);
+      final textDirectionIndex = _sharedPrefs.getInt(_messageDirectionKey);
 
       if (blink == null ||
           mirror == null ||
@@ -76,20 +81,18 @@ class LocalStorageService {
     MarqueeConfigModel marqueeConfig,
   ) async {
     try {
-      final sharedPreferences = await SharedPreferences.getInstance();
-
-      await sharedPreferences.setBool(_blinkKey, marqueeConfig.blink);
-      await sharedPreferences.setBool(_mirrorKey, marqueeConfig.mirror);
-      await sharedPreferences.setString(_messageKey, marqueeConfig.message);
-      await sharedPreferences.setDouble(_sizeKey, marqueeConfig.size);
-      await sharedPreferences.setDouble(_velocityKey, marqueeConfig.velocity);
-      await sharedPreferences.setInt(
+      await _sharedPrefs.setBool(_blinkKey, marqueeConfig.blink);
+      await _sharedPrefs.setBool(_mirrorKey, marqueeConfig.mirror);
+      await _sharedPrefs.setString(_messageKey, marqueeConfig.message);
+      await _sharedPrefs.setDouble(_sizeKey, marqueeConfig.size);
+      await _sharedPrefs.setDouble(_velocityKey, marqueeConfig.velocity);
+      await _sharedPrefs.setInt(
           _messageColorKey, marqueeConfig.messageColor.value);
-      await sharedPreferences.setInt(
+      await _sharedPrefs.setInt(
           _backgroundColorKey, marqueeConfig.backgroundColor.value);
-      await sharedPreferences.setInt(
+      await _sharedPrefs.setInt(
           _scrollDirectionKey, marqueeConfig.scrollDirection.index);
-      await sharedPreferences.setInt(
+      await _sharedPrefs.setInt(
           _messageDirectionKey, marqueeConfig.messageDirection.index);
 
       _log.finer('Saved marquee config: $marqueeConfig to local storage');

@@ -16,66 +16,52 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: viewModel.loadMarqueeConfig,
-      builder: (_, __) {
-        if (viewModel.loadMarqueeConfig.running) {
-          return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
+    final marquee = ListenableBuilder(
+      listenable: viewModel,
+      builder: (_, __) => MarqueeText(marqueeConfig: viewModel.marqueeConfig),
+    );
 
-        final marquee = ListenableBuilder(
-          listenable: viewModel,
-          builder: (_, __) =>
-              MarqueeText(marqueeConfig: viewModel.marqueeConfig!),
-        );
+    final setting = HomeMarqueeSetting(viewModel: viewModel);
 
-        final setting = HomeMarqueeSetting(viewModel: viewModel);
-
-        return Scaffold(
-          resizeToAvoidBottomInset: false,
-          appBar: AppBar(
-            title: const Text('ShoutBoard'),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.settings),
-                onPressed: () => context.push(Routes.settings),
-              ),
-            ],
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: const Text('ShoutBoard'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () => context.push(Routes.settings),
           ),
-          floatingActionButton: FloatingActionButton.extended(
-            label: const Text('Play'),
-            icon: const Icon(Icons.play_arrow_rounded),
-            onPressed: () => context.push(Routes.marquee),
-          ),
-          body: SafeArea(
-            child: OrientationBuilder(
-              builder: (context, orientation) {
-                if (orientation == Orientation.landscape) {
-                  return SafeArea(
-                    child: Row(
-                      children: [
-                        Expanded(flex: 3, child: marquee),
-                        Expanded(flex: 2, child: setting),
-                      ],
-                    ),
-                  );
-                }
-
-                return Column(
+        ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        label: const Text('Play'),
+        icon: const Icon(Icons.play_arrow_rounded),
+        onPressed: () => context.push(Routes.marquee),
+      ),
+      body: SafeArea(
+        child: OrientationBuilder(
+          builder: (context, orientation) {
+            if (orientation == Orientation.landscape) {
+              return SafeArea(
+                child: Row(
                   children: [
-                    Expanded(flex: 2, child: marquee),
-                    Expanded(flex: 3, child: setting),
+                    Expanded(flex: 3, child: marquee),
+                    Expanded(flex: 2, child: setting),
                   ],
-                );
-              },
-            ),
-          ),
-        );
-      },
+                ),
+              );
+            }
+
+            return Column(
+              children: [
+                Expanded(flex: 2, child: marquee),
+                Expanded(flex: 3, child: setting),
+              ],
+            );
+          },
+        ),
+      ),
     );
   }
 }
