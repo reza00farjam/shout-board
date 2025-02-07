@@ -36,6 +36,15 @@ class HomeScreen extends StatelessWidget {
 
         return Scaffold(
           resizeToAvoidBottomInset: false,
+          appBar: AppBar(
+            title: const Text('ShoutBoard'),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.settings),
+                onPressed: () => context.push(Routes.settings),
+              ),
+            ],
+          ),
           floatingActionButton: FloatingActionButton.extended(
             label: const Text('Play'),
             icon: const Icon(Icons.play_arrow_rounded),

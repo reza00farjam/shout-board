@@ -5,6 +5,7 @@ import '../ui/home/view_model/home_viewmodel.dart';
 import '../ui/home/widgets/home_screen.dart';
 import '../ui/marquee/view_model/marquee_viewmodel.dart';
 import '../ui/marquee/widgets/marquee_screen.dart';
+import '../ui/settings/widgets/settings_screen.dart';
 import 'routes.dart';
 
 /// `router` as a function is preferred over being top-level variable because it
@@ -24,9 +25,13 @@ GoRouter router() {
         routes: [
           GoRoute(
             path: Routes.marquee,
-            builder: (context, __) => MarqueeScreen(
+            builder: (context, _) => MarqueeScreen(
               viewModel: MarqueeViewModel(marqueeRepository: context.read()),
             ),
+          ),
+          GoRoute(
+            path: Routes.settings,
+            builder: (_, __) => const SettingsScreen(),
           ),
         ],
       ),
