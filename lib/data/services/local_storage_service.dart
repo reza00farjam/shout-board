@@ -2,7 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:logging/logging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../domain/models/marquee/marquee_config_model.dart';
+import '../../domain/models/app_config/app_config_model.dart';
+import '../../domain/models/marquee_config/marquee_config_model.dart';
 import '../../utils/result.dart';
 
 class LocalStorageService {
@@ -15,6 +16,8 @@ class LocalStorageService {
   static const _backgroundColorKey = 'BACKGROUND_COLOR';
   static const _scrollDirectionKey = 'SCROLL_DIRECTION';
   static const _messageDirectionKey = 'MESSAGE_DIRECTION';
+
+  static const _languageCodeKey = 'LANGUAGE_CODE';
 
   late final SharedPreferences _sharedPrefs;
 
@@ -77,9 +80,7 @@ class LocalStorageService {
     }
   }
 
-  Future<Result<void>> saveMarqueeConfig(
-    MarqueeConfigModel marqueeConfig,
-  ) async {
+  Future<Result> saveMarqueeConfig(MarqueeConfigModel marqueeConfig) async {
     try {
       await _sharedPrefs.setBool(_blinkKey, marqueeConfig.blink);
       await _sharedPrefs.setBool(_mirrorKey, marqueeConfig.mirror);
@@ -99,6 +100,42 @@ class LocalStorageService {
       return const Result.success(null);
     } on Exception catch (e) {
       _log.warning('Failed to save marquee config to local storage', e);
+      return Result.failure(e);
+    }
+  }
+
+  Result<AppConfigModel> fetchAppConfig() {
+    try {
+      final languageCode = _sharedPrefs.getString(_languageCodeKey);
+
+      if (languageCode == null) {
+        _log.warning('Failed to fetch app config from local storage');
+        return Result.failure(Exception('Failed to fetch app config'));
+      }
+
+      final appConfig = AppConfigModel(
+        locale: languageCode.isEmpty ? null : Locale(languageCode),
+      );
+
+      _log.finer('Fetched app config: $appConfig from local storage');
+      return Result.success(appConfig);
+    } on Exception catch (e) {
+      _log.warning('Failed to fetch app config from local storage', e);
+      return Result.failure(e);
+    }
+  }
+
+  Future<Result> saveAppConfig(AppConfigModel appConfig) async {
+    try {
+      await _sharedPrefs.setString(
+        _languageCodeKey,
+        appConfig.locale?.languageCode ?? '',
+      );
+
+      _log.finer('Saved app config: $appConfig to local storage');
+      return const Result.success(null);
+    } on Exception catch (e) {
+      _log.warning('Failed to save app config to local storage', e);
       return Result.failure(e);
     }
   }

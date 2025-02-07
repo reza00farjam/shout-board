@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:marqueer/marqueer.dart';
 
-import '../../../domain/models/marquee/marquee_config_model.dart';
+import '../../../domain/models/marquee_config/marquee_config_model.dart';
 
 class MarqueeText extends StatefulWidget {
   final MarqueeConfigModel marqueeConfig;

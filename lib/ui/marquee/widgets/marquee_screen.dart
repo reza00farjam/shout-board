@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/localization/localization.dart';
 import '../../core/ui/marquee_text.dart';
 import '../view_model/marquee_viewmodel.dart';
 
@@ -58,8 +59,8 @@ class _MarqueeScreenState extends State<MarqueeScreen> {
         opacity: 0.3,
         child: FloatingActionButton.extended(
           onPressed: context.pop,
-          label: const Text('Pause'),
           icon: const Icon(Icons.pause_rounded),
+          label: Text(AppLocalization.of(context).pause),
         ),
       ),
       body: MarqueeText(marqueeConfig: widget.viewModel.marqueeConfig),

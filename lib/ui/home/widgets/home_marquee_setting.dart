@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/models/marquee/marquee_config_model.dart';
+import '../../../domain/models/marquee_config/marquee_config_model.dart';
+import '../../core/localization/localization.dart';
 import '../view_model/home_viewmodel.dart';
 import 'home_color_picker_list_tile.dart';
 
@@ -46,7 +47,9 @@ class _HomeMarqueeSettingState extends State<HomeMarqueeSetting> {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: TextField(
                       controller: _messageController,
-                      decoration: const InputDecoration(label: Text('Message')),
+                      decoration: InputDecoration(
+                        label: Text(AppLocalization.of(context).message),
+                      ),
                       onTapOutside: (_) => FocusScope.of(context).unfocus(),
                       onChanged: (message) =>
                           widget.viewModel.updateMarqueeConfig(
@@ -56,7 +59,7 @@ class _HomeMarqueeSettingState extends State<HomeMarqueeSetting> {
                   ),
                   gap,
                   ListTile(
-                    title: const Text('Size'),
+                    title: Text(AppLocalization.of(context).size),
                     trailing: SizedBox(
                       width: sliderWidth,
                       child: Slider(
@@ -71,7 +74,7 @@ class _HomeMarqueeSettingState extends State<HomeMarqueeSetting> {
                     ),
                   ),
                   ListTile(
-                    title: const Text('Velocity'),
+                    title: Text(AppLocalization.of(context).velocity),
                     trailing: SizedBox(
                       width: sliderWidth,
                       child: Slider(
@@ -86,7 +89,7 @@ class _HomeMarqueeSettingState extends State<HomeMarqueeSetting> {
                     ),
                   ),
                   SwitchListTile(
-                    title: const Text('Left to Right'),
+                    title: Text(AppLocalization.of(context).leftToRight),
                     value: marqueeConfig.messageDirection == TextDirection.ltr,
                     onChanged: (leftToRight) =>
                         widget.viewModel.updateMarqueeConfig(
@@ -97,7 +100,7 @@ class _HomeMarqueeSettingState extends State<HomeMarqueeSetting> {
                     ),
                   ),
                   SwitchListTile(
-                    title: const Text('Horizontal'),
+                    title: Text(AppLocalization.of(context).horizontal),
                     value: marqueeConfig.scrollDirection == Axis.horizontal,
                     onChanged: (isHorizontal) =>
                         widget.viewModel.updateMarqueeConfig(
@@ -109,28 +112,28 @@ class _HomeMarqueeSettingState extends State<HomeMarqueeSetting> {
                   ),
                   SwitchListTile(
                     value: marqueeConfig.blink,
-                    title: const Text('Blink'),
+                    title: Text(AppLocalization.of(context).blink),
                     onChanged: (blink) => widget.viewModel.updateMarqueeConfig(
                       marqueeConfig.copyWith(blink: blink),
                     ),
                   ),
                   SwitchListTile(
                     value: marqueeConfig.mirror,
-                    title: const Text('Mirror'),
+                    title: Text(AppLocalization.of(context).mirror),
                     onChanged: (mirror) => widget.viewModel.updateMarqueeConfig(
                       marqueeConfig.copyWith(mirror: mirror),
                     ),
                   ),
                   HomeColorPickerListTile(
                     value: marqueeConfig.messageColor,
-                    title: const Text('Message Color'),
+                    title: Text(AppLocalization.of(context).messageColor),
                     onChanged: (color) => widget.viewModel.updateMarqueeConfig(
                       marqueeConfig.copyWith(messageColor: color),
                     ),
                   ),
                   HomeColorPickerListTile(
                     value: marqueeConfig.backgroundColor,
-                    title: const Text('Background Color'),
+                    title: Text(AppLocalization.of(context).backgroundColor),
                     onChanged: (color) => widget.viewModel.updateMarqueeConfig(
                       marqueeConfig.copyWith(backgroundColor: color),
                     ),

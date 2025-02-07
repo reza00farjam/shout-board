@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/localization/localization.dart';
 import '../view_model/home_viewmodel.dart';
 import '../../core/ui/marquee_text.dart';
 import '../../../routing/routes.dart';
@@ -26,7 +27,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('ShoutBoard'),
+        title: Text(AppLocalization.of(context).title),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -35,8 +36,8 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        label: const Text('Play'),
         icon: const Icon(Icons.play_arrow_rounded),
+        label: Text(AppLocalization.of(context).play),
         onPressed: () => context.push(Routes.marquee),
       ),
       body: SafeArea(

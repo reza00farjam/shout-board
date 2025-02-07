@@ -1,8 +1,10 @@
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:shout_board/ui/settings/view_model/settings_viewmodel.dart';
 
 import '../ui/home/view_model/home_viewmodel.dart';
 import '../ui/home/widgets/home_screen.dart';
+import '../ui/language/widgets/language_screen.dart';
 import '../ui/marquee/view_model/marquee_viewmodel.dart';
 import '../ui/marquee/widgets/marquee_screen.dart';
 import '../ui/settings/widgets/settings_screen.dart';
@@ -19,20 +21,34 @@ GoRouter router() {
     routes: [
       GoRoute(
         path: Routes.home,
-        builder: (context, __) => HomeScreen(
-          viewModel: HomeViewModel(marqueeConfigRepository: context.read()),
+        builder: (context, _) => HomeScreen(
+          viewModel: HomeViewModel(
+            context: context,
+            marqueeConfigRepository: context.read(),
+          ),
         ),
         routes: [
           GoRoute(
             path: Routes.marquee,
             builder: (context, _) => MarqueeScreen(
-              viewModel:
-                  MarqueeViewModel(marqueeConfigRepository: context.read()),
+              viewModel: MarqueeViewModel(
+                context: context,
+                marqueeConfigRepository: context.read(),
+              ),
             ),
           ),
           GoRoute(
             path: Routes.settings,
-            builder: (_, __) => const SettingsScreen(),
+            builder: (context, _) => SettingsScreen(
+              viewModel: SettingsViewModel(appConfigRepository: context.read()),
+            ),
+            routes: [
+              GoRoute(
+                path: Routes.language,
+                builder: (context, _) =>
+                    LanguageScreen(viewModel: context.read()),
+              ),
+            ],
           ),
         ],
       ),

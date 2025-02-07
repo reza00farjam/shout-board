@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../ui/core/localization/localization.dart';
+
 part 'marquee_config_model.freezed.dart';
 
 @freezed
@@ -32,15 +34,17 @@ class MarqueeConfigModel with _$MarqueeConfigModel {
   static const velocityMinValue = 0.01;
   static const velocityMaxValue = 1.0;
 
-  static const defaultInstance = MarqueeConfigModel(
-    blink: false,
-    mirror: false,
-    message: 'PREVIEW',
-    size: sizeMaxValue,
-    messageColor: Colors.white,
-    backgroundColor: Colors.black,
-    velocity: 0.2 * velocityMaxValue,
-    scrollDirection: Axis.horizontal,
-    messageDirection: TextDirection.ltr,
-  );
+  static MarqueeConfigModel defaultInstance(BuildContext context) {
+    return MarqueeConfigModel(
+      blink: false,
+      mirror: false,
+      size: sizeMaxValue,
+      messageColor: Colors.white,
+      backgroundColor: Colors.black,
+      velocity: 0.2 * velocityMaxValue,
+      scrollDirection: Axis.horizontal,
+      messageDirection: TextDirection.ltr,
+      message: AppLocalization.of(context).preview,
+    );
+  }
 }

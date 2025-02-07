@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
 import '../../../data/repositories/marquee_config_repository.dart';
-import '../../../domain/models/marquee/marquee_config_model.dart';
+import '../../../domain/models/marquee_config/marquee_config_model.dart';
 import '../../../utils/result.dart';
 
 class HomeViewModel extends ChangeNotifier {
   final MarqueeConfigRepository _marqueeConfigRepository;
 
   HomeViewModel({
+    required BuildContext context,
     required MarqueeConfigRepository marqueeConfigRepository,
   }) : _marqueeConfigRepository = marqueeConfigRepository {
-    loadMarqueeConfig();
+    loadMarqueeConfig(context);
   }
 
   final _log = Logger('HomeViewModel');
@@ -22,7 +23,7 @@ class HomeViewModel extends ChangeNotifier {
   late MarqueeConfigModel _marqueeConfig;
   MarqueeConfigModel get marqueeConfig => _marqueeConfig;
 
-  Result loadMarqueeConfig() {
+  Result loadMarqueeConfig(BuildContext context) {
     try {
       final result = _marqueeConfigRepository.fetchMarqueeConfig();
 
@@ -31,7 +32,7 @@ class HomeViewModel extends ChangeNotifier {
           _marqueeConfig = result.value;
           _log.fine('Loaded marquee config');
         case Failure():
-          _marqueeConfig = MarqueeConfigModel.defaultInstance;
+          _marqueeConfig = MarqueeConfigModel.defaultInstance(context);
           _log.warning('Failed to load marquee config', result.error);
       }
 

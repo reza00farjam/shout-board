@@ -1,4 +1,4 @@
-import '../../domain/models/marquee/marquee_config_model.dart';
+import '../../domain/models/marquee_config/marquee_config_model.dart';
 import '../../utils/result.dart';
 import '../services/local_storage_service.dart';
 
@@ -23,9 +23,7 @@ class MarqueeConfigRepository {
     return result;
   }
 
-  Future<Result<void>> saveMarqueeConfig(
-    MarqueeConfigModel marqueeConfig,
-  ) async {
+  Future<Result> saveMarqueeConfig(MarqueeConfigModel marqueeConfig) async {
     final result = await _localStorageService.saveMarqueeConfig(marqueeConfig);
 
     if (result is Success) _cachedMarqueeConfig = marqueeConfig;
